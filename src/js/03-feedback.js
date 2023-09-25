@@ -3,8 +3,6 @@
 // Під час сабміту форми очищуй сховище і поля форми, а також виводь у консоль об'єкт з полями email, message та їхніми поточними значеннями.
 // Зроби так, щоб сховище оновлювалось не частіше, ніж раз на 500 мілісекунд. Для цього додай до проекту і використовуй бібліотеку lodash.throttle.
 
-// додав функцію, щоб користувач не міг відправити порожню форму;
-
 import throttle from 'lodash.throttle';
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,19 +35,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function submitForm(event) {
     event.preventDefault();
-    let state = {
-      email: emailInput.value,
-      message: messageTextarea.value,
-    };
+    console.log({ email: emailInput.value, message: messageTextarea.value });
+
     if (emailInput.value === '' || messageTextarea.value === '') {
-      alert('всі поля мають бути заповненні');
-    } else {
-      console.log(state);
-      clearFormState();
+      return alert('Всі поля мають бути заповнені!');
     }
   }
 
-  form.addEventListener('input', lodash.throttle(saveFormState, 500));
+  form.addEventListener('input', throttle(saveFormState, 500));
   window.addEventListener('load', restoreFormState);
   form.addEventListener('submit', submitForm);
 });
