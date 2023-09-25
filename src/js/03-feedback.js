@@ -5,7 +5,7 @@
 
 // додав функцію, щоб користувач не міг відправити порожню форму;
 
-import throttle from 'lodash.throttle';
+// import throttle from 'lodash.throttle';
 
 document.addEventListener('DOMContentLoaded', function () {
   let form = document.querySelector('.feedback-form');
