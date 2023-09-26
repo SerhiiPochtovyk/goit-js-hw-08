@@ -35,12 +35,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function submitForm(event) {
     event.preventDefault();
-    console.log({ email: emailInput.value, message: messageTextarea.value });
 
     if (emailInput.value === '' || messageTextarea.value === '') {
       return alert('Всі поля мають бути заповнені!');
     }
+    console.log({ email: emailInput.value, message: messageTextarea.value });
   }
+
+  restoreFormState();
 
   form.addEventListener('input', throttle(saveFormState, 500));
   window.addEventListener('load', restoreFormState);
