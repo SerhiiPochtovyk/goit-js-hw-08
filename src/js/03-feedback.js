@@ -42,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log({ email: emailInput.value, message: messageTextarea.value });
   }
 
-  restoreFormState();
-
   form.addEventListener('input', throttle(saveFormState, 500));
   window.addEventListener('load', restoreFormState);
   form.addEventListener('submit', submitForm);
+  form.addEventListener('submit', clearFormState);
 });
