@@ -27,23 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function clearFormState() {
-    localStorage.removeItem('feedback-form-state');
-    emailInput.value = '';
-    messageTextarea.value = '';
-  }
-
   function submitForm(event) {
     event.preventDefault();
 
     if (emailInput.value === '' || messageTextarea.value === '') {
       return alert('Всі поля мають бути заповнені!');
     }
-    console.log({ email: emailInput.value, message: messageTextarea.value });
+
+    const { email, message } = event.currentTarget.elements;
+    console.log({ email: email.value, message: message.value });
+    localStorage.removeItem('feedback-form-state');
+    event.currentTarget.reset();
   }
 
   form.addEventListener('input', throttle(saveFormState, 500));
   window.addEventListener('load', restoreFormState);
   form.addEventListener('submit', submitForm);
-  form.addEventListener('submit', clearFormState);
 });
